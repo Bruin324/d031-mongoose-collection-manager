@@ -1,0 +1,33 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        Did you get a new magnet?
+        <form method ="POST" action='/add'>
+            <input type="text" name="name" placeholder="Give your magnet a name">
+            <input type="text" name="description" placeholder="Describe your magnet">
+            <select name="theme">
+                <option value="Vacation">Vacation</option>
+                <option value="Occasion">Occasion</option>
+                <option value="Business Trip">Business Trip</option>
+                <option value="Vacation">Vacation</option>
+            </select>
+            When did you get the magnet?
+            <input type="date" name="dateBought">
+            Where did the magnet come from?
+            <input type="text" name="city" placeholder="City (optional)">
+            <input type="text" name="state" placeholder="State (optional)">
+            <input type="text" name="country" placeholder="Country">
+            <textarea name="colors" rows="1" cols="40" placeholder="What are the main colors of the magnet? (comma separated)"></textarea>
+            <label for="cost">How much did the magnet cost?(optional):</label>
+            <input id="cost" type="number" name="cost" step=".01" min="0">
+            This magnet was a gift
+            <input type="radio" name="gift" id="yes" value==true>
+            <label for="yes">Yes</label>
+            <input type="radio" name="gift" id="no" value=false>
+            <label for="no">No</label>
+            <button type="submit">Add the magnet!</button>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        index
+        {{#magnets}}
+            <div class="magnet-card">
+                Name: {{name}}
+                Magnet Theme: {{theme}}
+                Date Bought: {{dateBought}}
+                Cost {{cost}}
+                {{#locationBought}}
+                    Bought at: {{city}}, {{state}} {{country}}
+                {{/locationBought}}
+                Main Colors: {{#colors}}{{.}}{{/colors}}
+            </div>
+        {{/magnets}}
+
+    </body>
+</html>
