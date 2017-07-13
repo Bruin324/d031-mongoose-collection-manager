@@ -1,33 +1,54 @@
 <html>
-    <head>
-        
-    </head>
-    <body>
-        Did you get a new magnet?
-        <form method ="POST" action='/add'>
-            <input type="text" name="name" placeholder="Give your magnet a name">
-            <input type="text" name="description" placeholder="Describe your magnet">
-            <select name="theme">
-                <option value="Vacation">Vacation</option>
-                <option value="Occasion">Occasion</option>
-                <option value="Business Trip">Business Trip</option>
-                <option value="Vacation">Vacation</option>
-            </select>
-            When did you get the magnet?
-            <input type="date" name="dateBought">
-            Where did the magnet come from?
+
+<head>
+    <link rel="stylesheet" type="" href="/public/styles.css">
+</head>
+
+<body>
+    Did you get a new magnet?
+    <form method="POST" action='/add'>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Give your magnet a name" autofocus>
+        </div>
+        <div>
+            <label for="description">Decription:</label>
+            <input type="text" id="description" name="description" placeholder="Describe your magnet">
+        </div>
+        <div>
+            <label for="theme">Theme:</label>
+            <select id="theme" name="theme">
+                    <option value="Vacation">Vacation</option>
+                    <option value="Occasion">Occasion</option>
+                    <option value="Business Trip">Business Trip</option>
+                    <option value="Unknown">Unknown</option>
+                </select>
+        </div>
+        <div> 
+            <label for="dateAcquired">When did you get the magnet?</label>
+            <input type="date" id="dataAcquired" name="dateAcquired">
+        </div>
+        <div>Where did the magnet come from?
             <input type="text" name="city" placeholder="City (optional)">
             <input type="text" name="state" placeholder="State (optional)">
-            <input type="text" name="country" placeholder="Country">
-            <textarea name="colors" rows="1" cols="40" placeholder="What are the main colors of the magnet? (comma separated)"></textarea>
-            <label for="cost">How much did the magnet cost?(optional):</label>
+            <input type="text" name="country" placeholder="Country"></div>
+        <div>
+            <label for="colors">Colors:</label>
+            <input name="colors" placeholder="What are the main colors of the magnet?"></input>
+        </div>
+        <div>
+            <label for="cost">How much did the magnet cost?(optional): $</label>
             <input id="cost" type="number" name="cost" step=".01" min="0">
-            This magnet was a gift
+        </div>
+        <div>This magnet was a gift
             <input type="radio" name="gift" id="yes" value==true>
             <label for="yes">Yes</label>
             <input type="radio" name="gift" id="no" value=false>
-            <label for="no">No</label>
+            <label for="no">No</label></div>
+        <div>
             <button type="submit">Add the magnet!</button>
-        </form>
-    </body>
+        </div>
+    </form>
+</body>
+
 </html>

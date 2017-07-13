@@ -4,7 +4,8 @@ const magnetSchema = new mongoose.Schema({
     name: { type: String, required: true },
     description: { type: String },
     theme: { type: String },
-    dateGot: { type: Date },
+    dateAcquired: { type: Date },
+    dateAcquiredFormatted: { type: String },
     locationFrom: {
         city: {type: String},
         state: {type: String},

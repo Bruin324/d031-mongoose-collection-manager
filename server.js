@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const Magnet = require('./models/magnets.js');
+const moment = require('moment');
+moment().format();
 // const viewController = require('view-controller')
 
 const application = express();
@@ -28,18 +30,26 @@ application.get('/', async (request, response) => {
     // response.send(model);
 });
 
+application.get('/data', async (request, response) => {
+    var magnets = await Magnet.find();
+    var model = {magnets: magnets}
+    // response.render('index', model)
+    response.send(model);
+});
+
 application.get('/add', (request, response) => {
     response.render('add');
 })
 
-application.post('/add', (request, response) => {
+application.post('/add', async (request, response) => {
     var colorSplits = /, | |,/
     var splitColors = colorSplits[Symbol.split](request.body.colors)
-    var newMagnet = {
+    var newMagnet = new Magnet({
         name: request.body.name,
         description: request.body.description,
         theme: request.body.theme,
-        dateGot: request.body.dateBought,
+        dateAcquired: request.body.dateAcquired,
+        dateAcquiredFormatted: moment(request.body.dateAcquired).format('ddd MMM Do YYYY'),
         locationFrom: {
             city: request.body.city,
             state: request.body.state,
@@ -48,8 +58,39 @@ application.post('/add', (request, response) => {
         colors: splitColors,
         cost: request.body.cost,
         gift: request.body.gift
-    }
-    response.send(newMagnet);
+    });
+    // response.send(newMagnet);
+    await newMagnet.save()
+    response.redirect('/');
+})
+
+application.post('/update/:id', async (request, response) => {
+    var magnetId = request.params.id;
+    var dateAcquired = request.body.dateAcquired;
+    var colorSplits = /, | |,/
+    var splitColors = colorSplits[Symbol.split](request.body.colors)
+    var updateMagnet = await Magnet.updateOne({_id: magnetId},
+        {
+        name: request.body.name,
+        description: request.body.description,
+        // theme: request.body.theme,
+        dateAcquired: moment(dateAcquired, 'ddd MMM Do YYYY').toDate(),
+        dateAcquiredFormatted: request.body.dateAcquired,
+        locationFrom: {
+            city: request.body.city,
+            state: request.body.state,
+            country: request.body.country
+        },
+        colors: splitColors,
+        cost: request.body.cost,
+        // gift: request.body.gift
+    });
+    response.redirect('/');
+})
+
+application.post('/delete/:id', async (request, response) => {
+    await Magnet.findByIdAndRemove(request.params.id);
+    response.redirect('/');
 })
 
 // var magnet = new Magnet({ 

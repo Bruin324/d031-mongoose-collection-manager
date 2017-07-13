@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0 auto;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+}
+
+.magnet-container {
+    display: inline-block;
+}
+
+.magnet-card {
+    border: 1px solid grey;
+    padding: 10px;
+    margin: 10px;
+    width: 50%;
+}
+
+.card-text {
+    font-size: 1em;
+}
+
+input.display{
+    line-height: 2em;
+    width: 300px;
+    border: 0;
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.location { 
+    display: flex;
+    overflow: auto;
+    align-items: center;
+}
